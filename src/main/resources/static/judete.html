@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sistem vot electoral electronic</title>
+        <link rel="icon" type="image/x-icon" href="/images/flag-transparent-21.png">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js" integrity="sha512-5BqtYqlWfJemW5+v+TZUs22uigI8tXeVah5S/1Z6qBLVO7gakAOtkOzUtgq6dsIo5c0NJdmGPs0H9I+2OHUHVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css" integrity="sha512-CpIKUSyh9QX2+zSdfGP+eWLx23C8Dj9/XmHjZY2uDtfkdLGo0uY12jgcnkX9vXOgYajEKb/jiw67EYm+kBf+6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body class="text-center">
+        <div class="d-block">
+            <img class="mb-4" src="/images/flag-transparent-21.png" alt="" width="150" height="150">
+            <h1 class="h3 mb-3 font-weight-normal">Sistemul electronic de vot electoral</h1>
+            <h5 class="h5 mb-3 font-weight-normal">Selectați localitatea dvs. de mai jos pentru a vedea candidații.</h5>
+
+            <div id="container"></div>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    getParameter = (key) => {
+
+        // Address of the current window
+        address = window.location.search
+
+        // Returns a URLSearchParams object instance
+        parameterList = new URLSearchParams(address);
+
+        // Returning the respected value associated
+        // with the provided key
+        return parameterList.get(key)
+    }
+
+    $( document ).ready(function()
+    {
+        var cnp = getParameter("cnp");
+        //alert(tmpCnp);
+        $.ajax({
+            url : 'incarcaJudete/' + cnp,
+            type : 'get',
+            success : function(data) {
+                $('#container').html(data);
+            },
+            error : function(request,error)
+            {
+                alert("Request: "+JSON.stringify(request));
+            }
+        });
+    });
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sistem vot electoral electronic</title>
+        <link rel="icon" type="image/x-icon" href="/images/flag-transparent-21.png">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js" integrity="sha512-5BqtYqlWfJemW5+v+TZUs22uigI8tXeVah5S/1Z6qBLVO7gakAOtkOzUtgq6dsIo5c0NJdmGPs0H9I+2OHUHVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css" integrity="sha512-CpIKUSyh9QX2+zSdfGP+eWLx23C8Dj9/XmHjZY2uDtfkdLGo0uY12jgcnkX9vXOgYajEKb/jiw67EYm+kBf+6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="main.css" rel="stylesheet">
+    </head>
+    <body class="text-center">
+        <div class="d-block">
+            <img class="mb-4" src="/images/flag-transparent-21.png" alt="" width="150" height="150">
+            <h1 class="h3 mb-3 font-weight-normal">Sistemul electronic de vot electoral</h1>
+            <h5 class="h5 mb-3 font-weight-normal">Bun venit la sistemul electronic de vot electoral</h5>
+
+            <form class="form-cnp novalidate" method="get" onsubmit="conectare();">
+                <label for="cnp" class="sr-only">Introduceți CNP-ul</label>
+                <div class="input-group has-validation">
+                    <input type="text" id="cnp" class="form-control form-control-sm" placeholder="CNP" required autofocus>
+                </div>
+
+                <script>
+                    function conectare()
+                    {
+                        event.preventDefault();
+                        var cnp = document.getElementById("cnp").value;
+
+                        if (cnp !== "")
+                        {
+                            window.location = 'conectare.html?cnp=' + cnp;
+                            return true;
+                        }
+                        else
+                        {
+                            alert('Introduceți un CNP valid');
+                            return false;
+                        }
+                    }
+                </script>
+
+                <button type="submit" class="btn btn-sm mt-3 btn-primary btn-block">Înainte >></button>
+
+                <p class="mt-5 mb-3 text-muted">&copy; 2024, Ana Constantinescu</p>
+            </form>
+        </div>
+    </body>
+</html>
